@@ -10,7 +10,8 @@ const solutions = 'https://www.dailyclimate.org/solutions/'
 
 
 
-async function start() {
+
+cron.schedule('*/10 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
 
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
@@ -32,8 +33,6 @@ async function start() {
    await fs.writeFile('data.txt', titles.map((el)=> `${el} - ${dates[titles.indexOf(el)]}`).join('\r\n'))
 
   await browser.close()
-}
-//  start()
-//   cron.schedule('10****',start)   Waiting on Discord response - Might use a Cloud Trigger program like Google Cloud Scheduler
+})
 
- setInterval(start, 5000)
+
