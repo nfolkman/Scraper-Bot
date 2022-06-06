@@ -1,7 +1,7 @@
 # Scraper-Bot
 
 <h3>Scraping automation for climate news.</h3>
-<h6><a target="_blank">Source: https://www.dailyclimate.org/</a></h6>
+<h6>Source:<a href="https://www.dailyclimate.org/" target="_blank"> https://www.dailyclimate.org/</a></h6>
 
 
 <br>
