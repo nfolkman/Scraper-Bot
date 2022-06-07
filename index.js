@@ -5,7 +5,7 @@ const puppeteer = require("puppeteer")
 const fs = require("fs/promises")
 const cron = require('node-cron')
 const express = require('express')
-const { response } = require("express")
+const { json } = require("express/lib/response")
 const res = require("express/lib/response")
 const app = express()
 
@@ -21,7 +21,7 @@ const solutions = 'https://www.dailyclimate.org/solutions/'
 
 
 
-cron.schedule('*/5 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
+let scrape = cron.schedule('*/5 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
 
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
@@ -99,14 +99,20 @@ cron.schedule('*/5 * * * * *', async () => {        // the date-schedule string 
    }
 
 
-   console.log(json)   // when I run the api (located in a separate, required file), the scraped data logs to the console as written, which means the called api is running this other page of code successfully
-
+   await console.log(json)
+   
+   // when I run the api (located in the separate api.js file), the scraped data logs to the console as written, which means the called api is running this other page of code successfully
 
    
-                      // the problem is I can't figure out how to code it so the running api deposits the scraped json data to the DOM
+   // the problem is I can't figure out how to code it so the running api deposits the scraped json data to the DOM
+                
+
 
   await browser.close()
 })
+
+
+
 
 
 

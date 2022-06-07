@@ -3,11 +3,17 @@ const app = express()
 const news = require('./index.js')
 
 
+
+
 const port = process.env.PORT || 3000
+
+let greeting= 'Daily Climate News'
+
+
 
 
 app.get('/', (req, res)=> {
-   res.send('Daily Climate News')     // this shows up on the local localhost home page
+   res.send(greeting)     // this shows up on the local localhost home page
 })
 
 app.get('/news', (req, res) => {
