@@ -4,6 +4,16 @@
 const puppeteer = require("puppeteer")
 const fs = require("fs/promises")
 const cron = require('node-cron')
+const express = require('express')
+const { response } = require("express")
+const res = require("express/lib/response")
+const app = express()
+
+
+
+
+
+
 
 const goodNews = 'https://www.dailyclimate.org/good-news/'
 const solutions = 'https://www.dailyclimate.org/solutions/'
@@ -11,16 +21,20 @@ const solutions = 'https://www.dailyclimate.org/solutions/'
 
 
 
-cron.schedule('*/10 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
+cron.schedule('*/5 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
 
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto(solutions)
 
-   console.log(`Navigating to ${this.url}...`)
+   console.log(`Navigating to ${solutions}...`)
 
    let titles = await page.evaluate(()=> {
       return Array.from(document.querySelectorAll('#col-center > div.widget__head .widget__headline-text')).map(x => x.textContent.trim())
+   })
+
+   let description = await page.evaluate(()=> {
+      return Array.from(document.querySelectorAll('#col-center > div.widget__body.clearfix.sm-mt-1 .body-description')).map(x => x.textContent.trim())
    })
 
    let dates = await page.evaluate(()=> {
@@ -28,11 +42,76 @@ cron.schedule('*/10 * * * * *', async () => {        // the date-schedule string
    })
 
 
-   console.log(titles.map((el)=> `${el} - ${dates[titles.indexOf(el)]}`))
 
-   await fs.writeFile('data.txt', titles.map((el)=> `${el} - ${dates[titles.indexOf(el)]}`).join('\r\n'))
+   const json = {
+      "articles": [
+         {
+            "title": `${titles[0]}`,
+            "description": `${description[0]}`,
+            "date": `${dates[0]}`
+         },
+         {
+            "title": `${titles[1]}`,
+            "description": `${description[1]}`,
+            "date": `${dates[1]}`
+         },
+         {
+            "title": `${titles[2]}`,
+            "description": `${description[2]}`,
+            "date": `${dates[2]}`
+         },
+         {
+            "title": `${titles[3]}`,
+            "description": `${description[3]}`,
+            "date": `${dates[3]}`
+         },
+         {
+            "title": `${titles[4]}`,
+            "description": `${description[4]}`,
+            "date": `${dates[4]}`
+         },
+         {
+            "title": `${titles[5]}`,
+            "description": `${description[5]}`,
+            "date": `${dates[5]}`
+         },
+         {
+            "title": `${titles[6]}`,
+            "description": `${description[6]}`,
+            "date": `${dates[6]}`
+         },
+         {
+            "title": `${titles[7]}`,
+            "description": `${description[7]}`,
+            "date": `${dates[7]}`
+         },
+         {
+            "title": `${titles[8]}`,
+            "description": `${description[8]}`,
+            "date": `${dates[8]}`
+         },
+         {
+            "title": `${titles[9]}`,
+            "description": `${description[9]}`,
+            "date": `${dates[9]}`
+         },
+      ]
+   }
+
+
+   console.log(json)   // when I run the api (located in a separate, required file), the scraped data logs to the console as written, which means the called api is running this other page of code successfully
+
+
+   
+                      // the problem is I can't figure out how to code it so the running api deposits the scraped json data to the DOM
 
   await browser.close()
 })
+
+
+
+
+
+
 
 

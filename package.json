@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.18.1",
     "fs": "^0.0.1-security",
     "node-cron": "^3.0.0",
     "puppeteer": "^14.2.1"
