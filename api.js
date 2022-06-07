@@ -18,7 +18,7 @@ app.get('/', (req, res)=> {
 
 
 // runs the index.js scraper code BUT the code doesn't show up on local server
-app.get('/news', (req, res) => {
+app.get('/api/news', (req, res) => {
    res.send(news)                    
 })
 
