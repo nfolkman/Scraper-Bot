@@ -13,22 +13,30 @@ const app = express()
 
 
 
-
-
 const goodNews = 'https://www.dailyclimate.org/good-news/'
 const solutions = 'https://www.dailyclimate.org/solutions/'
 
 
 
+// Schedule/Automation Code - (the date-schedule string requires spaces to function properly)
 
-let scrape = cron.schedule('*/5 * * * * *', async () => {        // the date-schedule string requires spaces to function properly
+let scrape = cron.schedule('*/5 * * * * *', async () => {        
 
+
+
+
+   // Navigation to webpage
+   
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto(solutions)
 
    console.log(`Navigating to ${solutions}...`)
 
+
+
+   // Data Scraping
+   
    let titles = await page.evaluate(()=> {
       return Array.from(document.querySelectorAll('#col-center > div.widget__head .widget__headline-text')).map(x => x.textContent.trim())
    })
@@ -42,6 +50,8 @@ let scrape = cron.schedule('*/5 * * * * *', async () => {        // the date-sch
    })
 
 
+
+   // Parse Data into JSON Object
 
    const json = {
       "articles": [
@@ -97,6 +107,8 @@ let scrape = cron.schedule('*/5 * * * * *', async () => {        // the date-sch
          },
       ]
    }
+
+
 
 
    await console.log(json)

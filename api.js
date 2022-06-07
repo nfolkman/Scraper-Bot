@@ -11,13 +11,15 @@ let greeting= 'Daily Climate News'
 
 
 
-
+// shows up on the local localhost home page
 app.get('/', (req, res)=> {
-   res.send(greeting)     // this shows up on the local localhost home page
+   res.send(greeting)     
 })
 
+
+// runs the index.js scraper code BUT the code doesn't show up on local server
 app.get('/news', (req, res) => {
-   res.send(news)                    // this effectively runs the index.js scraper code
+   res.send(news)                    
 })
 
 app.listen(port, ()=> {
