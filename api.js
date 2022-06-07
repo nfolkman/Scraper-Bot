@@ -5,7 +5,7 @@ const json = require('./data.json')
 
 
 
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 let greeting= 'Daily Climate News'
 
@@ -24,6 +24,6 @@ app.get('/api/news', (req, res) => {
    res.json(json)                    
 })
 
-app.listen(port, ()=> {
-   console.log(`App is listening to port ${port}`)
+app.listen(PORT, ()=> {
+   console.log(`App is listening to port ${PORT}`)
 })
