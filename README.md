@@ -1,7 +1,15 @@
 # Scraper-Bot
 
 <h3>Scraping automation for climate news.</h3>
-<h6>Source:<a href="https://www.dailyclimate.org/" target="_blank"> https://www.dailyclimate.org/</a></h6>
+
+
+<h5>Example Automated API</h5>
+
+<a href="https://climate-news-api-app.herokuapp.com/api" target="_blank">Link to API</a>
+
+![Screenshot (201)](https://user-images.githubusercontent.com/98185555/172344176-49915af1-e11b-49e4-9c24-d2c37677d39e.png)
+
+<h6>News Source:<a href="https://www.dailyclimate.org/" target="_blank"> https://www.dailyclimate.org/</a></h6>
 
 
 <br>
