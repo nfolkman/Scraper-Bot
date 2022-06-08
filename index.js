@@ -20,9 +20,9 @@ const solutions = 'https://www.dailyclimate.org/solutions/'
 
 // Schedule/Automation Code - (the date-schedule string requires spaces to function properly)
 
-// let scrape = cron.schedule('*/5 * * * * *', async () => {        
+let scrape = cron.schedule('*/10 * * * *', async () => {        
 
-let scrape = async () => {
+// let scrape = async () => {
 
 
    // Navigation to webpage
@@ -122,9 +122,9 @@ let scrape = async () => {
 
 
   await browser.close()
-}
+})
 
-scrape()
+// scrape()
 
 
 
