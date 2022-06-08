@@ -31,7 +31,7 @@ app.get('/api', (req, res) => {
 })
 
 
-cron.schedule('* * * * *', async () => { 
+cron.schedule('* * * * *', async () => {   // I'm just trying things at this point lol
    app.post('/api', (req, res) => {
       res.json(json)
    })
